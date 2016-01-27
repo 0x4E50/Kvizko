@@ -1,6 +1,7 @@
 package com.example.denis_niko.projektjanez;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -11,26 +12,26 @@ import android.widget.TextView;
  * Created by Niko on 22. 01. 2016.
  */
 
-/* ZAMENJAJ MainActivity z TimerActivity v AndroidManifest.xml */
-
 public class TimerActivity extends Activity implements View.OnClickListener{
 
     private CountDownTimer countDownTimer;
     private boolean timerHasStarted = false;
     private Button startB;
     public TextView text;
-    private final long startTime = 60 * 1000;
-    private final long interval = 1 * 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.EXTRA_INTEGER);
+        int num = Integer.parseInt(message);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(startTime, interval);
-        text.setText(text.getText() + String.valueOf(startTime / 1000));
+        countDownTimer = new MyCountDownTimer(num * 1000, 1000);            // StartTime, Interval
+        text.setText(text.getText() + String.valueOf(num * 1000 / 1000));   // StartTime / Interval
     }
 
     @Override
@@ -61,4 +62,5 @@ public class TimerActivity extends Activity implements View.OnClickListener{
             text.setText("" + millisUntilFinished / 1000);
         }
     }
+
 }
