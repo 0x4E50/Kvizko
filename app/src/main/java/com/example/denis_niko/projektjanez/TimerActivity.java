@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by Niko on 22. 01. 2016.
+ * Created by Niko
  */
 
 public class TimerActivity extends Activity implements View.OnClickListener{
@@ -30,8 +30,8 @@ public class TimerActivity extends Activity implements View.OnClickListener{
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(num * 1000, 1000);            // StartTime, Interval
-        text.setText(text.getText() + String.valueOf(num * 1000 / 1000));   // StartTime / Interval
+        countDownTimer = new MyCountDownTimer(num * 1000, 1000);     // StartTime, Interval
+        text.setText(text.getText() + String.valueOf(num / 60));     // StartTime / Interval
     }
 
     @Override
@@ -59,7 +59,8 @@ public class TimerActivity extends Activity implements View.OnClickListener{
 
         @Override
         public void onTick(long millisUntilFinished) {
-            text.setText("" + millisUntilFinished / 1000);
+            long minutes = millisUntilFinished / 60000, seconds = millisUntilFinished / 1000;
+            text.setText(minutes + " minutes\n" + (seconds - (minutes*60)) + " seconds");
         }
     }
 
