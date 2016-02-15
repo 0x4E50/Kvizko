@@ -17,6 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Start" />
+        android:text="@string/timer_start" />
 
 </RelativeLayout>

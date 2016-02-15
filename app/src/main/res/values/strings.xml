@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ProjektJanez</string>
     <string name="action_settings">Settings</string>
-    <string name="message_timer">Enter seconds</string>
-    <string name="button_timer">Timer</string>
+
+    <string name="timer_message">Enter time in minutes</string>
+    <string name="timer_start">Start</string>
+    <string name="timer_button">Timer</string>
 </resources>

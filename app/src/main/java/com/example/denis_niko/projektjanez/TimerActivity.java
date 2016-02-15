@@ -1,9 +1,11 @@
 package com.example.denis_niko.projektjanez;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,8 +32,8 @@ public class TimerActivity extends Activity implements View.OnClickListener{
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(num * 1000, 1000);     // StartTime, Interval
-        text.setText(text.getText() + String.valueOf(num / 60));     // StartTime / Interval
+        countDownTimer = new MyCountDownTimer(num * 60000, 1000);           // StartTime in ms, Interval in sec
+        text.setText(text.getText() + String.valueOf(num + " minutes"));    // Confirms set time
     }
 
     @Override
@@ -39,11 +41,11 @@ public class TimerActivity extends Activity implements View.OnClickListener{
         if(!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-            startB.setText("STOP");
+            startB.setText("Stop");
         } else {
             countDownTimer.cancel();
             timerHasStarted = false;
-            startB.setText("RESTART");
+            startB.setText("Restart");
         }
     }
 
@@ -52,15 +54,18 @@ public class TimerActivity extends Activity implements View.OnClickListener{
             super(startTime, interval);
         }
 
+        Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         @Override
         public void onFinish() {
-            text.setText("Time's up!");
+            text.setText("Time is up!");
+            vib.vibrate(1000);   // vibrates for 1 sec on completion
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
             long minutes = millisUntilFinished / 60000, seconds = millisUntilFinished / 1000;
-            text.setText(minutes + " minutes\n" + (seconds - (minutes*60)) + " seconds");
+            text.setText(minutes + ":" + (seconds - (minutes*60)));
         }
     }
 

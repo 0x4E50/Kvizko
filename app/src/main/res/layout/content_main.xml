@@ -13,13 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:hint="@string/message_timer"
+        android:hint="@string/timer_message"
         android:inputType="number"/>
     
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_timer"
+        android:text="@string/timer_button"
         android:onClick="StartTimer"/>
 
 </LinearLayout>
