@@ -4,5 +4,5 @@
 
     <string name="timer_message">Enter time in minutes</string>
     <string name="timer_start">Start</string>
-    <string name="timer_button">Timer</string>
+    <string name="timer_button">Start Timer</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.denis_niko.projektjanez;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,8 +49,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TimerActivity.class);
         EditText editText = (EditText) findViewById(R.id.message_timer);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_INTEGER, message);
-        startActivity(intent);
+
+        int num = Integer.parseInt(message);   // just used for verification
+
+        if(num <= 60 && num > 0) {
+            intent.putExtra(EXTRA_INTEGER, message);
+            startActivity(intent);
+        } else {
+            Context context = getApplicationContext();
+            CharSequence text = "Invalid input!\nTry again.";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
 }

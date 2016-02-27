@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -10,16 +11,16 @@
     
     <EditText
         android:id="@+id/message_timer"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:hint="@string/timer_message"
         android:inputType="number"/>
-    
+
     <Button
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/timer_button"
-        android:onClick="StartTimer"/>
+        android:onClick="StartTimer" />
 
 </LinearLayout>
