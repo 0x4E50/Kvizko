@@ -32,8 +32,16 @@ public class TimerActivity extends Activity implements View.OnClickListener{
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(num * 60000, 1000);           // StartTime in ms, Interval in sec
-        text.setText(text.getText() + String.valueOf(num + " minutes"));    // Confirms set time
+        countDownTimer = new MyCountDownTimer(num * 60000, 1000);           // StartTime & Interval in ms
+
+        if(num == 1) { text.setText(text.getText() + String.valueOf(num + " minute")); }
+        else { text.setText(text.getText() + String.valueOf(num + " minutes")); }
+    }
+
+    @Override
+    public void onBackPressed() {
+        countDownTimer.cancel();    // Cancel timer
+        finish();                   // and stop activity
     }
 
     @Override
