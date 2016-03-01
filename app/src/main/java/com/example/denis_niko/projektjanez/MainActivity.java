@@ -3,6 +3,7 @@ package com.example.denis_niko.projektjanez;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,22 +47,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void StartTimer(View view) {
-        Intent intent = new Intent(this, TimerActivity.class);
+        Intent timer_intent = new Intent(this, TimerActivity.class);
         EditText editText = (EditText) findViewById(R.id.message_timer);
         String message = editText.getText().toString();
+
+        if(message.matches("")) {
+            // make sure input is not empty
+            Toast.makeText(this, "You entered nothing!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         int num = Integer.parseInt(message);   // just used for verification
 
         if(num <= 60 && num > 0) {
-            intent.putExtra(EXTRA_INTEGER, message);
-            startActivity(intent);
+            timer_intent.putExtra(EXTRA_INTEGER, message);
+            startActivity(timer_intent);
         } else {
-            Context context = getApplicationContext();
-            CharSequence text = "Invalid input!\nTry again.";
-            int duration = Toast.LENGTH_LONG;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            Toast.makeText(this, "Invalid Input!\nTry again.", Toast.LENGTH_LONG).show();
         }
     }
 
