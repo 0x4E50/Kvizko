@@ -25,23 +25,30 @@ public class TimerActivity extends Activity implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_INTEGER);
-        int num = Integer.parseInt(message);
+        int num = Integer.parseInt(message);   // number input in MainActivity via EditText
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(num * 60000, 1000);           // StartTime & Interval in ms
-
-        if(num == 1) { text.setText(text.getText() + String.valueOf(num + " minute")); }
-        else { text.setText(text.getText() + String.valueOf(num + " minutes")); }
+        countDownTimer = new MyCountDownTimer(num * 60000, 1000);           // StartTime & Interval
+                                                                            // in ms
+        if(num == 1) {
+            text.setText(
+                String.format(getString(R.string.timer_display_singular), num)
+            );
+        } else {
+            text.setText(
+                String.format(getString(R.string.timer_display_plural), num)
+            );
+        }
     }
 
     @Override
     public void onBackPressed() {
-        countDownTimer.cancel();    // Cancel timer
-        finish();                   // and stop activity
+        countDownTimer.cancel();    // cancel timer
+        finish();                   // & stop activity
     }
 
     @Override
@@ -49,11 +56,11 @@ public class TimerActivity extends Activity implements View.OnClickListener{
         if(!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-            startB.setText("Stop");
+            startB.setText(R.string.timer_stop);
         } else {
             countDownTimer.cancel();
             timerHasStarted = false;
-            startB.setText("Restart");
+            startB.setText(R.string.timer_restart);
         }
     }
 
@@ -66,14 +73,25 @@ public class TimerActivity extends Activity implements View.OnClickListener{
 
         @Override
         public void onFinish() {
-            text.setText("Time is up!");
+            text.setText(R.string.timer_end_message);
             vib.vibrate(1000);   // vibrates for 1 sec on completion
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
-            long minutes = millisUntilFinished / 60000, seconds = millisUntilFinished / 1000;
-            text.setText(minutes + ":" + (seconds - (minutes*60)));
+            long minutes = millisUntilFinished / 60000, seconds = millisUntilFinished / 1000,
+            sec_in_min = (seconds - (minutes*60));
+
+            if(sec_in_min < 10) {
+                text.setText(
+                    String.format(getString(R.string.timer_w_zero), minutes, sec_in_min)
+                );
+            } else {
+                text.setText(
+                    String.format(getString(R.string.timer), minutes, sec_in_min)
+                );
+            }
+
         }
     }
 

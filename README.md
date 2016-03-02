@@ -1,1 +1,2 @@
-### ProjektJanez v0.4.6-alpha
+### ProjektJanez
+v0.4.7-alpha
