@@ -4,12 +4,11 @@
     <string name="action_settings">Settings</string>
 
     <!-- MainActivity -->
+    <string name="timer_message">Enter Time In Minutes</string>
+
     <string name="button_timer">Start Timer</string>
     <string name="button_quiz">Quiz</string>
     <string name="button_stats">Statistics</string>
-
-    <string name="timer_message">Enter Time In Minutes</string>
-
 
     <!-- TimerActivity -->
     <string name="timer_display_singular">%1$d minute</string>
