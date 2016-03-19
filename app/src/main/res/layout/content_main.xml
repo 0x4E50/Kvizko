@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_timer"
-        android:onClick="StartTimer" />
+        android:onClick="startTimer" />
 
     <Button
         android:id="@+id/button_quiz"
@@ -42,6 +42,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="80dp"
         android:text="@string/button_stats"
-        android:onClick="StartStats"/>
+        android:onClick="startStats"/>
 
 </RelativeLayout>

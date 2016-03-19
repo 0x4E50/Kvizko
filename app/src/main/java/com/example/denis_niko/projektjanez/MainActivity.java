@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void StartTimer(View view) {
+    public void startTimer(View view) {
         Intent timer_intent = new Intent(this, TimerActivity.class);
         EditText editText = (EditText) findViewById(R.id.message_timer);
         String message = editText.getText().toString();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void StartStats(View view) {
+    public void startStats(View view) {
         Intent stats_intent = new Intent(this, StatsActivity.class);
         startActivity(stats_intent);
     }
