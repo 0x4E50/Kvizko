@@ -1,2 +1,2 @@
 ### ProjektJanez
-0.5.7-alpha
+0.6.7-alpha
