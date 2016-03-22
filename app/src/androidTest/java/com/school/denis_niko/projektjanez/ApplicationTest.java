@@ -1,4 +1,4 @@
-package com.example.denis_niko.projektjanez;
+package com.school.denis_niko.projektjanez;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

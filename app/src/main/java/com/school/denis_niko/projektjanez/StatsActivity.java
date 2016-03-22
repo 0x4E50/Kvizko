@@ -1,4 +1,4 @@
-package com.example.denis_niko.projektjanez;
+package com.school.denis_niko.projektjanez;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,9 +31,10 @@ public class StatsActivity extends AppCompatActivity{
 
         String readData = readFile("stats.txt");
 
-        //getTotalTime(readData);
         TextView text = (TextView) findViewById(R.id.totalTimeValue);
         text.setText(String.valueOf(getTotalTime(readData)));
+        text = (TextView) findViewById(R.id.avgTimeValue);
+        text.setText(String.valueOf(getAvgTime(readData)));  // <-- totally not Lisp :P
     }
 
     @Override
@@ -64,7 +63,7 @@ public class StatsActivity extends AppCompatActivity{
     }
 
     private String readFile(String fileName) {
-        String ret = "";
+        String readString = "";
 
         try {
             InputStream inputStream = openFileInput(fileName);
@@ -72,15 +71,14 @@ public class StatsActivity extends AppCompatActivity{
             if(inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ((receiveString = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(receiveString);
+                while ((readString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(readString);
                 }
 
                 inputStream.close();
-                ret = stringBuilder.toString();
+                readString = stringBuilder.toString();
             }
         } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
@@ -88,10 +86,11 @@ public class StatsActivity extends AppCompatActivity{
             Log.e("login activity", "Cannot read file: " + e.toString());
         }
 
-        return ret;
+        return readString;
     }
 
     private int getTotalTime(String data) {
+        // gets total time the timer has run for
         char[] times = data.toCharArray();
         int totalTime = 0;
 
@@ -104,12 +103,24 @@ public class StatsActivity extends AppCompatActivity{
                     j++;
                 }
                 i = j;
-                System.out.println("Number: " + temp);
                 totalTime += Integer.parseInt(temp);
             }
         }
 
         return totalTime;
+    }
+
+    private float getAvgTime(String data) {
+        // gets the total avg time
+        int numberOfData = 0;
+
+        for(int i = 0; i < data.length(); i++) {
+            if(data.charAt(i) == '/') {
+                numberOfData++;
+            }
+        }
+
+        return (float)getTotalTime(data)/numberOfData;
     }
 
 }

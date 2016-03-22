@@ -31,4 +31,28 @@
             android:gravity="center" />
     </TableRow>
 
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/avgTime"
+            android:text="@string/avg_time"
+            android:layout_weight="1"
+            android:background="#b0b0b0"
+            android:textColor="#000000"
+            android:padding="18dip"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/avgTimeValue"
+            android:text="@string/no_value"
+            android:layout_weight="1"
+            android:background="#a09f9f"
+            android:textColor="#000000"
+            android:padding="18dip"
+            android:gravity="center" />
+    </TableRow>
+
 </TableLayout>

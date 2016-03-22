@@ -1,4 +1,4 @@
-package com.example.denis_niko.projektjanez;
+package com.school.denis_niko.projektjanez;
 
 import android.content.Context;
 import android.content.Intent;
@@ -43,8 +43,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
         text = (TextView) this.findViewById(R.id.timer);
-        countDownTimer = new MyCountDownTimer(num * 1000/*60000*/, 1000);           // StartTime & Interval
-                                                                            // in ms
+        countDownTimer = new MyCountDownTimer(num * 60000, 1000);      // StartTime & Interval
+                                                                       // in ms
         if(num == 1) {
             text.setText(
                 String.format(getString(R.string.timer_display_singular), num)

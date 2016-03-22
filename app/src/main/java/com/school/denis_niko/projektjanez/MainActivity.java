@@ -1,4 +1,4 @@
-package com.example.denis_niko.projektjanez;
+package com.school.denis_niko.projektjanez;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_INTEGER = "com.example.denis_niko.projektjanez.INTEGER";
+    public final static String EXTRA_INTEGER = "com.school.denis_niko.projektjanez.INTEGER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,4 +27,5 @@
     <string name="stats_reset">Reset stats</string>
 
     <string name="total_time">Total Time</string>
+    <string name="avg_time">Avg Time</string>
 </resources>
