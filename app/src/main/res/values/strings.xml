@@ -2,6 +2,7 @@
     <!-- General -->
     <string name="app_name">ProjektJanez</string>
     <string name="action_settings">Settings</string>
+    <string name="no_value">null</string>
 
     <!-- MainActivity -->
     <string name="timer_message">Enter Time In Minutes</string>
@@ -24,4 +25,6 @@
 
     <!-- StatsActivity -->
     <string name="stats_reset">Reset stats</string>
+
+    <string name="total_time">Total Time</string>
 </resources>

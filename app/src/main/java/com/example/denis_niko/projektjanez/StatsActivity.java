@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,10 +31,39 @@ public class StatsActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Toast.makeText(this, readFile("stats.txt"), Toast.LENGTH_LONG).show();  // temp
+        String readData = readFile("stats.txt");
+
+        //getTotalTime(readData);
+        TextView text = (TextView) findViewById(R.id.totalTimeValue);
+        text.setText(String.valueOf(getTotalTime(readData)));
     }
 
-    public String readFile(String fileName) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.stats_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(deleteFile("stats.txt")) {
+            Toast.makeText(this, "Stats reset", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Operation failed", Toast.LENGTH_SHORT).show();
+        }
+
+        return id == R.id.stats_settings || super.onOptionsItemSelected(item);
+    }
+
+    public boolean deleteFile(String fileName) {
+        File dir = getFilesDir();
+        File file = new File(dir, fileName);
+        return file.delete();
+    }
+
+    private String readFile(String fileName) {
         String ret = "";
 
         try {
@@ -58,11 +91,25 @@ public class StatsActivity extends AppCompatActivity{
         return ret;
     }
 
-    public void deleteFile(View view) {
-        File dir = getFilesDir();
-        File file = new File(dir, "stats.txt");
-        file.delete();
-        Toast.makeText(this, "Stats reset", Toast.LENGTH_LONG).show();
+    private int getTotalTime(String data) {
+        char[] times = data.toCharArray();
+        int totalTime = 0;
+
+        for(int i = 0; i < times.length; i++) {
+            if(times[i] == '/') {
+                int j = i+1;
+                String temp = "";
+                while(times[j] != ' ') {
+                    temp += String.valueOf(times[j]);
+                    j++;
+                }
+                i = j;
+                System.out.println("Number: " + temp);
+                totalTime += Integer.parseInt(temp);
+            }
+        }
+
+        return totalTime;
     }
 
 }

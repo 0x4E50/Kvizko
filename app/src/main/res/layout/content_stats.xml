@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +7,28 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_stats">
 
-    <Button
-        android:id="@+id/reset_stats"
-        android:layout_width="wrap_content"
+    <TableRow
         android:layout_height="wrap_content"
-        android:onClick="deleteFile"
-        android:layout_centerHorizontal="true"
-        android:text="@string/stats_reset" />
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/totalTime"
+            android:text="@string/total_time"
+            android:layout_weight="1"
+            android:background="#b0b0b0"
+            android:textColor="#000000"
+            android:padding="18dip"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/totalTimeValue"
+            android:text="@string/no_value"
+            android:layout_weight="1"
+            android:background="#a09f9f"
+            android:textColor="#000000"
+            android:padding="18dip"
+            android:gravity="center" />
+    </TableRow>
+
+</TableLayout>
