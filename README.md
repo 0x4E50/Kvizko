@@ -3,7 +3,7 @@
 
 ### Features:
 - [x] Timer (1)
-- [] Quiz
+- [ ] Quiz
 - [x] Statistics (2)
 
 ### Notes:
