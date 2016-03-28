@@ -30,11 +30,13 @@ public class StatsActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         String readData = readFile("stats.txt");
+        int totalTime = getTotalTime(readData);
+        float avgTime = getAvgTime(readData);
 
         TextView text = (TextView) findViewById(R.id.totalTimeValue);
-        text.setText(String.valueOf(getTotalTime(readData)));
+        text.setText(String.valueOf(totalTime));
         text = (TextView) findViewById(R.id.avgTimeValue);
-        text.setText(String.valueOf(getAvgTime(readData)));  // <-- totally not Lisp :P
+        text.setText(String.valueOf(String.format("%.2f", avgTime)));
     }
 
     @Override
