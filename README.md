@@ -1,5 +1,5 @@
 # ProjektJanez
-##### Version: 0.7.0-alpha
+##### Version: 0.8.0-alpha
 
 #### Features:
 - [x] Timer (1)
