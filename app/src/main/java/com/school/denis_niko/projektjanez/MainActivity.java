@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_INTEGER = "com.school.denis_niko.projektjanez.INTEGER";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,23 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startTimer(View view) {
         Intent timer_intent = new Intent(this, TimerActivity.class);
-        EditText editText = (EditText) findViewById(R.id.message_timer);
-        String message = editText.getText().toString();
-
-        if(message.matches("")) {
-            // make sure input is not empty
-            Toast.makeText(this, "You entered nothing!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        int num = Integer.parseInt(message);   // just used for verification
-
-        if(num <= 60 && num > 0) {
-            timer_intent.putExtra(EXTRA_INTEGER, message);
-            startActivity(timer_intent);
-        } else {
-            Toast.makeText(this, "Invalid Input!\nTry again.", Toast.LENGTH_LONG).show();
-        }
+        startActivity(timer_intent);
     }
 
     public void startStats(View view) {

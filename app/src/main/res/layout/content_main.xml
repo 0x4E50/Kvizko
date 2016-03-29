@@ -2,26 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main">
-    
-    <EditText
-        android:id="@+id/message_timer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/timer_message"
-        android:inputType="number" />
 
     <Button
         android:id="@+id/button_timer"
-        android:layout_below="@id/message_timer"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/button_timer"
         android:onClick="startTimer" />
 
@@ -30,8 +21,8 @@
         android:layout_below="@id/button_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/button_quiz" />
 
     <Button
@@ -39,9 +30,9 @@
         android:layout_below="@id/button_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/button_stats"
-        android:onClick="startStats"/>
+        android:onClick="startStats" />
 
 </RelativeLayout>

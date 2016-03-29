@@ -34,9 +34,12 @@ public class StatsActivity extends AppCompatActivity{
         float avgTime = getAvgTime(readData);
 
         TextView text = (TextView) findViewById(R.id.totalTimeValue);
-        text.setText(String.valueOf(totalTime));
+        text.setText(
+                String.format(getString(R.string.total_time_display), totalTime));
+
         text = (TextView) findViewById(R.id.avgTimeValue);
-        text.setText(String.valueOf(String.format("%.2f", avgTime)));
+        text.setText(
+                String.format(getString(R.string.avg_time_display), avgTime));
     }
 
     @Override
