@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void QuizStart(View view){
+        Intent quiz =new Intent(this,QuizActivity.class);
+        startActivity(quiz);
+    }
     public void StartTimer(View view) {
         Intent timer_intent = new Intent(this, TimerActivity.class);
         EditText editText = (EditText) findViewById(R.id.message_timer);

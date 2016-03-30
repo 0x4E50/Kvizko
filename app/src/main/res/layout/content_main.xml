@@ -32,7 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="80dp"
-        android:text="@string/button_quiz"/>
+        android:text="@string/button_quiz"
+        android:clickable="false"
+        android:onClick="QuizStart" />
 
     <Button
         android:id="@+id/button_stats"
