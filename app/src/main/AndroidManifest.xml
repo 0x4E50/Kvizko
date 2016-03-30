@@ -30,6 +30,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
+        <!-- QuizActivity -->
+        <activity android:name="com.school.denis_niko.projektjanez.QuizActivity"
+            android:label="Quiz"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- StatsActivity -->
         <activity
             android:name="com.school.denis_niko.projektjanez.StatsActivity"
