@@ -11,28 +11,47 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_edit_text_question"
-        android:imeActionLabel="@string/quiz_edit_text_button"
-        android:id="@+id/question" />
+        android:imeActionLabel="Write an answer"
+        android:id="@+id/question"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_edit_text_answer"
+        android:imeActionLabel="Save"
         android:id="@+id/answer"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/question"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:imeOptions="actionDone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:id="@+id/Next"
+        android:id="@+id/NextQuestion"
         android:layout_marginBottom="94dp"
         android:layout_marginRight="23dp"
         android:layout_marginEnd="23dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/NextQuestion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:onClick="startString"/>
 
 </RelativeLayout>
