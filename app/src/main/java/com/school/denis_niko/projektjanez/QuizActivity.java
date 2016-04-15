@@ -43,10 +43,10 @@ public class QuizActivity extends Activity {
         nexButton.setOnClickListener(
             new Button.OnClickListener(){
                 public void onClick(View v){
-                    // When the button is clicked
                     String Question = InputQuestion.getText().toString();
                     String Answer = InputAnswer.getText().toString();
                     WriteFile(Question,Answer);
+                    // When the button is clicked
                     InputQuestion.setText("");
                     InputAnswer.setText("");
                 }
@@ -71,11 +71,11 @@ public class QuizActivity extends Activity {
         );
 
         AnswerButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    public void onClick(View v)
-                    {
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
                         TextAnswer.setVisibility(View.VISIBLE);
                         TextAnswer.setText(readFile("QuestionsAnswer.txt"));
+
                     }
                 }
 
@@ -83,10 +83,14 @@ public class QuizActivity extends Activity {
 
     }
     //end of on create
-/*
-    private void saveData(TextView InputQuestion)
+    /*
+    private void saveData()
     {
-
+        final EditText InputQuestion =(EditText) findViewById(R.id.question);
+        final EditText InputAnswer =(EditText) findViewById(R.id.answer);
+        String Question = InputQuestion.getText().toString();
+        String Answer = InputAnswer.getText().toString();
+     WriteFile(Question,Answer);
     }
     private void textboxClear()
     {
@@ -97,7 +101,7 @@ public class QuizActivity extends Activity {
         try {
             OutputStreamWriter Writer = new OutputStreamWriter(
                     this.openFileOutput("QuestionsAnswer.txt", Context.MODE_APPEND));
-            Writer.write(Question + "&" + Answer + "/n");
+            Writer.write(Question + "&" + Answer + "\n");
             Writer.close();
         }
         catch (IOException e){
