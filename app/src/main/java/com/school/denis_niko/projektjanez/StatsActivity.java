@@ -34,12 +34,10 @@ public class StatsActivity extends AppCompatActivity{
         float avgTime = getAvgTime(readData);
 
         TextView text = (TextView) findViewById(R.id.totalTimeValue);
-        text.setText(
-                String.format(getString(R.string.total_time_display), totalTime));
+        text.setText(String.format(getString(R.string.total_time_display), totalTime));
 
         text = (TextView) findViewById(R.id.avgTimeValue);
-        text.setText(
-                String.format(getString(R.string.avg_time_display), avgTime));
+        text.setText(String.format(getString(R.string.avg_time_display), avgTime));
     }
 
     @Override
@@ -52,11 +50,10 @@ public class StatsActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(deleteFile("stats.txt")) {
+        if(deleteFile("stats.txt"))
             Toast.makeText(this, "Stats reset", Toast.LENGTH_SHORT).show();
-        } else {
+        else
             Toast.makeText(this, "Operation failed", Toast.LENGTH_SHORT).show();
-        }
 
         return id == R.id.stats_settings || super.onOptionsItemSelected(item);
     }
@@ -78,9 +75,8 @@ public class StatsActivity extends AppCompatActivity{
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ((readString = bufferedReader.readLine()) != null) {
+                while ((readString = bufferedReader.readLine()) != null)
                     stringBuilder.append(readString);
-                }
 
                 inputStream.close();
                 readString = stringBuilder.toString();
@@ -118,14 +114,19 @@ public class StatsActivity extends AppCompatActivity{
     private float getAvgTime(String data) {
         // gets the total avg time
         int numberOfData = 0;
+        float avgTime;
 
         for(int i = 0; i < data.length(); i++) {
-            if(data.charAt(i) == '/') {
+            if(data.charAt(i) == '/')
                 numberOfData++;
-            }
         }
 
-        return (float)getTotalTime(data)/numberOfData;
+        if(numberOfData == 0)
+            avgTime = 0;
+        else
+            avgTime = (float)getTotalTime(data)/numberOfData;
+
+        return avgTime;
     }
 
 }

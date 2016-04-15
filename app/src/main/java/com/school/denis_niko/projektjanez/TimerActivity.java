@@ -45,7 +45,7 @@ public class TimerActivity extends AppCompatActivity {
         timePicker.setCurrentHour(0);
         timePicker.setCurrentMinute(0);
 
-        timer = (TextView) this.findViewById(R.id.timer);
+        timer = (TextView) findViewById(R.id.timer);
         startButton = (Button) findViewById(R.id.button);
 
         TimePicker.OnClickListener onClickListener = new View.OnClickListener() {
@@ -106,7 +106,8 @@ public class TimerActivity extends AppCompatActivity {
             vib.vibrate(1000);   // vibrates for 1 sec on completion
             timerRunning = false;
 
-            writeFile(String.valueOf(minutes));
+            if(minutes > 0)
+                writeFile(String.valueOf(minutes));
         }
 
         @Override
@@ -114,15 +115,11 @@ public class TimerActivity extends AppCompatActivity {
             long minutes = millisUntilFinished / 60000, seconds = millisUntilFinished / 1000,
             sec_in_min = (seconds - (minutes*60));
 
-            if(sec_in_min < 10) {
-                timer.setText(
-                        String.format(getString(R.string.timer_w_zero), minutes, sec_in_min));
-            } else {
-                timer.setText(
-                        String.format(getString(R.string.timer), minutes, sec_in_min));
-            }
+            if(sec_in_min < 10)
+                timer.setText(String.format(getString(R.string.timer_w_zero), minutes, sec_in_min));
+            else
+                timer.setText(String.format(getString(R.string.timer), minutes, sec_in_min));
         }
-
     }
 
 }

@@ -15,9 +15,8 @@
         <TextView
             android:id="@+id/totalTime"
             android:text="@string/total_time"
+            android:textAllCaps="true"
             android:layout_weight="1"
-            android:background="#b0b0b0"
-            android:textColor="#000000"
             android:padding="18dip"
             android:gravity="center" />
 
@@ -25,8 +24,6 @@
             android:id="@+id/totalTimeValue"
             android:text="@string/no_value"
             android:layout_weight="1"
-            android:background="#a09f9f"
-            android:textColor="#000000"
             android:padding="18dip"
             android:gravity="center" />
     </TableRow>
@@ -39,9 +36,8 @@
         <TextView
             android:id="@+id/avgTime"
             android:text="@string/avg_time"
+            android:textAllCaps="true"
             android:layout_weight="1"
-            android:background="#b0b0b0"
-            android:textColor="#000000"
             android:padding="18dip"
             android:gravity="center" />
 
@@ -49,8 +45,6 @@
             android:id="@+id/avgTimeValue"
             android:text="@string/no_value"
             android:layout_weight="1"
-            android:background="#a09f9f"
-            android:textColor="#000000"
             android:padding="18dip"
             android:gravity="center" />
     </TableRow>

@@ -30,10 +30,12 @@
 
     <!-- StatsActivity -->
     <string name="stats_reset">Reset stats</string>
+    <string name="after_reset">Stats were reset</string>
+    <string name="if_not_found">Stats could not be found</string>
 
     <string name="total_time">Total Time</string>
-    <string name="avg_time">Avg Time</string>
+    <string name="avg_time">Average Time</string>
 
-    <string name="total_time_display">%1$d min</string>
-    <string name="avg_time_display">%1$.2f min</string>
+    <string name="total_time_display">%1$d</string>
+    <string name="avg_time_display">%1$.2f</string>
 </resources>
