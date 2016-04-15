@@ -11,28 +11,72 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_edit_text_question"
-        android:imeActionLabel="@string/quiz_edit_text_button"
-        android:id="@+id/question" />
+        android:imeActionLabel="Write an answer"
+        android:id="@+id/question"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:inputType="text"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_edit_text_answer"
+        android:imeActionLabel="Save"
         android:id="@+id/answer"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/question"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:imeOptions="actionDone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:id="@+id/Next"
-        android:layout_marginBottom="94dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginEnd="23dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/NextQuestion"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/answer"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start_quiz"
+        android:id="@+id/StartQuiz"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/NextQuestion"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/QuestionText"
+        android:layout_alignTop="@+id/question"
+        android:layout_alignLeft="@+id/StartQuiz"
+        android:layout_alignStart="@+id/StartQuiz"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/AnwserText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Answer"
+        android:id="@+id/AnwserAndNext"
+        android:visibility="gone"
+        android:layout_alignParentRight="false"
+        android:layout_below="@+id/QuestionText" />
 
 </RelativeLayout>
