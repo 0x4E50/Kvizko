@@ -30,8 +30,10 @@ public class StatsActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         String readData = readFile("stats.txt");
-        int totalTime = getTotalTime(readData);
-        float avgTime = getAvgTime(readData);
+
+        int dataAmount = getDataAmount(readData),
+        totalTime = getTotalTime(readData);
+        float avgTime = getAvgTime(totalTime, dataAmount);
 
         TextView text = (TextView) findViewById(R.id.totalTimeValue);
         text.setText(String.format(getString(R.string.total_time_display), totalTime));
@@ -90,43 +92,42 @@ public class StatsActivity extends AppCompatActivity{
         return readString;
     }
 
-    private int getTotalTime(String data) {
-        // gets total time the timer has run for
-        char[] times = data.toCharArray();
-        int totalTime = 0;
+    private int getDataAmount(String data) {
+        int dataAmount = 0;
 
-        for(int i = 0; i < times.length; i++) {
-            if(times[i] == '/') {
-                int j = i+1;
-                String temp = "";
-                while(times[j] != ' ') {
-                    temp += String.valueOf(times[j]);
-                    j++;
+        for(int i = 0; i < data.length(); i++) {
+            if(data.charAt(i) == '/')
+                dataAmount++;
+        }
+
+        return dataAmount;
+    }
+
+    private int getTotalTime(String data) {
+        int totalTime = 0;
+        String tmp = "";
+
+        for(int i = 0; i < data.length(); i++) {
+            if (data.charAt(i) == '/') {
+                i++;
+                while(data.charAt(i) != ' ') {
+                    tmp += data.charAt(i);
+                    i++;
                 }
-                i = j;
-                totalTime += Integer.parseInt(temp);
+
+                totalTime += Integer.parseInt(tmp);
+                tmp = "";
             }
         }
 
         return totalTime;
     }
 
-    private float getAvgTime(String data) {
-        // gets the total avg time
-        int numberOfData = 0;
-        float avgTime;
-
-        for(int i = 0; i < data.length(); i++) {
-            if(data.charAt(i) == '/')
-                numberOfData++;
-        }
-
-        if(numberOfData == 0)
-            avgTime = 0;
+    private float getAvgTime(int totalTime, int dataAmount) {
+        if (dataAmount != 0)
+            return (float) totalTime / dataAmount;
         else
-            avgTime = (float)getTotalTime(data)/numberOfData;
-
-        return avgTime;
+            return 0;
     }
 
 }
