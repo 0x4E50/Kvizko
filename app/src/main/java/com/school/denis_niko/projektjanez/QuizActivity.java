@@ -3,6 +3,7 @@ package com.school.denis_niko.projektjanez;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 import android.view.View;
@@ -18,53 +19,62 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Random;
 
 /**
  * Created by Denis
  */
 
 public class QuizActivity extends Activity {
+
+    int index = 0;
+    private String datoteka;
+    int fileSize = 0;
+    String niz="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        final EditText InputQuestion =(EditText) findViewById(R.id.question);
-        //String Question = TextQuestion.getText().toString();
-        final EditText InputAnswer =(EditText) findViewById(R.id.answer);
-        //String Answer = TextAnswer.getText().toString();
-        final Button nexButton = (Button)findViewById(R.id.NextQuestion);
+        //final EditText InputQuestion =(EditText) findViewById(R.id.question);
+        //final EditText InputAnswer =(EditText) findViewById(R.id.answer);
+        final Button nexButton = (Button) findViewById(R.id.NextQuestion);
 
+        final EditText InputQuestion = (EditText) findViewById(R.id.question);
+        final EditText InputAnswer = (EditText) findViewById(R.id.answer);
 
         final TextView TextQuestion = (TextView) findViewById(R.id.QuestionText);
         final TextView TextAnswer = (TextView) findViewById(R.id.AnwserText);
-        final Button AnswerButton = (Button)findViewById(R.id.AnwserAndNext);
+        final Button AnswerButton = (Button) findViewById(R.id.AnwserAndNext);
 
-        // Event listener
-        nexButton.setOnClickListener(
-            new Button.OnClickListener(){
-                public void onClick(View v){
-                    String Question = InputQuestion.getText().toString();
-                    String Answer = InputAnswer.getText().toString();
-                    WriteFile(Question,Answer);
-                    // When the button is clicked
-                    InputQuestion.setText("");
-                    InputAnswer.setText("");
-                }
-            }
-        );
 
-        final Button StartQuizButton =(Button)findViewById(R.id.StartQuiz);
+        final Button StartQuizButton = (Button) findViewById(R.id.StartQuiz);
         StartQuizButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    public void onClick(View v)
-                    {
-                        InputAnswer.setVisibility(View.GONE);
-                        InputQuestion.setVisibility(View.GONE);
-                        nexButton.setVisibility(View.GONE);
-                       // StartQuizButton.setVisibility(View.GONE);
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        if (InputAnswer.getVisibility() == View.VISIBLE)
+                        {
+                            InputAnswer.setVisibility(View.GONE);
+                            InputQuestion.setVisibility(View.GONE);
+                            nexButton.setVisibility(View.GONE);
+                            // StartQuizButton.setVisibility(View.GONE);
+                            TextQuestion.setVisibility(View.VISIBLE);
+                            AnswerButton.setVisibility(View.VISIBLE);
 
-                        TextQuestion.setVisibility(View.VISIBLE);
-                        AnswerButton.setVisibility(View.VISIBLE);
+                            //deleteFile("QuestionsAnswer.txt");
+                            StartQuizButton.setText("Next Question");
+                            datoteka = readFile("QuestionsAnswer.txt");
+                            fileSize = readFileSize("QuestionsAnswer.txt");
+                            System.out.println("substrig =" + randomString(datoteka, fileSize));
+                            niz=randomString(datoteka, fileSize);
+                            QuestionDisplay(niz);
+                        }else //ko gumb spremeni ime
+                        {
+                            niz=randomString(datoteka, fileSize);
+                            QuestionDisplay(niz);
+                            TextAnswer.setText("");
+                        }
+
                     }
 
                 }
@@ -74,7 +84,7 @@ public class QuizActivity extends Activity {
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         TextAnswer.setVisibility(View.VISIBLE);
-                        TextAnswer.setText(readFile("QuestionsAnswer.txt"));
+                        QuestionAnwser(niz);
 
                     }
                 }
@@ -82,26 +92,74 @@ public class QuizActivity extends Activity {
         );
 
     }
+
     //end of on create
-    /*
-    private void saveData()
+    public void QuestionDisplay(String datoteka)
     {
+        int endofQ=datoteka.indexOf("&");
+        String out= datoteka.substring(0,endofQ);
+        TextView TextQuestion = (TextView) findViewById(R.id.QuestionText);
+        TextQuestion.setText(out);
+    }
+    public void QuestionAnwser(String datoteka)
+    {
+        int startofA=datoteka.indexOf("&");
+        String out= datoteka.substring(startofA+1);
+        TextView TextAnwser = (TextView) findViewById(R.id.AnwserText);
+        TextAnwser.setText(out);
+    }
+    public String randomString(String datoteka, int line)
+    {
+     int rand;
+        Random random = new Random();
+        rand=random.nextInt(line);
+        System.out.println("random line = "+rand);
+
+        String outputString="data";
+        int index=datoteka.indexOf("#"+rand);
+        int lenght=datoteka.indexOf("$"+rand);
+        outputString=datoteka.substring(index+2,lenght);
+
+        System.out.println("index= "+index);
+        System.out.println("lenght= "+lenght);
+        System.out.println("out= "+outputString);
+
+        return outputString;
+    }
+
+    public void saveData(View view)
+    {
+        Snackbar mysnackbar = Snackbar.make(view,"Vprašanje ali odgovor ne smeta biti prazna",Snackbar.LENGTH_LONG);
         final EditText InputQuestion =(EditText) findViewById(R.id.question);
         final EditText InputAnswer =(EditText) findViewById(R.id.answer);
         String Question = InputQuestion.getText().toString();
-        String Answer = InputAnswer.getText().toString();
-     WriteFile(Question,Answer);
+        String Answer =  InputAnswer.getText().toString();
+        System.out.println("Q= "+Question);
+        System.out.println("A= "+Answer);
+        if(Question.length()!=0 && Answer.length()!=0)
+        {
+            WriteFile(Question,Answer,index);
+            index++;
+            InputQuestion.setText("");
+            InputAnswer.setText("");
+            System.out.println("YES");
+        }
+        else
+        {
+            mysnackbar.show();
+            System.out.println("NO");
+        }
     }
     private void textboxClear()
     {
 
     }
-*/
-    private void WriteFile(String Question,String Answer){
+    //Pisanje datoteke
+    private void WriteFile(String Question,String Answer,int index){
         try {
             OutputStreamWriter Writer = new OutputStreamWriter(
                     this.openFileOutput("QuestionsAnswer.txt", Context.MODE_APPEND));
-            Writer.write(Question + "&" + Answer + "\n");
+            Writer.write("#"+index + Question + "&" + Answer + "$"+index+'\n');
             Writer.close();
         }
         catch (IOException e){
@@ -109,6 +167,7 @@ public class QuizActivity extends Activity {
         }
     }
 
+    //Branje datotek
    private String readFile(String fileName){
        String readString="";
        try{
@@ -119,6 +178,7 @@ public class QuizActivity extends Activity {
                StringBuilder stringBuilder = new StringBuilder();
 
                while((readString = bufferedReader.readLine())!= null){
+                   System.out.println("NEKE:" + readString);
                    stringBuilder.append(readString);
                }
                inputStream.close();
@@ -131,6 +191,35 @@ public class QuizActivity extends Activity {
        }
        return readString;
    }
+
+    private int readFileSize(String fileName){
+        String readString="";
+        int line =0;
+        try{
+            InputStream inputStream = openFileInput(fileName);
+            if(inputStream != null){
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while((readString = bufferedReader.readLine())!= null){
+                    stringBuilder.append(readString);
+                    line++;
+                }
+                inputStream.close();
+                readString = stringBuilder.toString();
+            }
+        }catch (FileNotFoundException e){
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e){
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+        System.out.println("Stevilo vrstic:" + line);
+        return line;
+    }
+
+
+    //Brisanje datoteke
     public boolean deleteFile(String fileName) {
         File dir = getFilesDir();
         File file = new File(dir, fileName);
