@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +29,7 @@ import java.util.Random;
  * Created by Denis
  */
 
-public class QuizActivity extends Activity {
+public class QuizActivity extends AppCompatActivity {
 
     int index = 0;
     private String datoteka;
@@ -36,6 +40,10 @@ public class QuizActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
         //final EditText InputQuestion =(EditText) findViewById(R.id.question);
         //final EditText InputAnswer =(EditText) findViewById(R.id.answer);
         final Button nexButton = (Button) findViewById(R.id.NextQuestion);
@@ -52,7 +60,7 @@ public class QuizActivity extends Activity {
         StartQuizButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        if (InputAnswer.getVisibility() == View.VISIBLE)
+                        if (InputAnswer.getVisibility() == View.VISIBLE&& !empty("QuestionsAnswer.txt"))
                         {
                             InputAnswer.setVisibility(View.GONE);
                             InputQuestion.setVisibility(View.GONE);
@@ -68,11 +76,15 @@ public class QuizActivity extends Activity {
                             System.out.println("substrig =" + randomString(datoteka, fileSize));
                             niz=randomString(datoteka, fileSize);
                             QuestionDisplay(niz);
-                        }else //ko gumb spremeni ime
+                        }else if(InputAnswer.getVisibility() == View.GONE) //ko gumb spremeni ime
                         {
                             niz=randomString(datoteka, fileSize);
                             QuestionDisplay(niz);
                             TextAnswer.setText("");
+                        }else
+                        {
+                            Snackbar mysnackbar = Snackbar.make(v,"Datoteka je prazna",Snackbar.LENGTH_LONG);
+                            mysnackbar.show();
                         }
 
                     }
@@ -94,6 +106,26 @@ public class QuizActivity extends Activity {
     }
 
     //end of on create
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.quiz_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(deleteFile("QuestionsAnswer.txt"))
+            Toast.makeText(this, "Data reset", Toast.LENGTH_SHORT).show();
+        else if(empty("QuestionsAnswer.txt"))
+            Toast.makeText(this, "File is empty", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Operation failed", Toast.LENGTH_SHORT).show();
+
+        return id == R.id.quiz_settings || super.onOptionsItemSelected(item);
+    }
     public void QuestionDisplay(String datoteka)
     {
         int endofQ=datoteka.indexOf("&");
@@ -225,4 +257,37 @@ public class QuizActivity extends Activity {
         File file = new File(dir, fileName);
         return file.delete();
     }
+    public boolean empty(String fileName)
+    {
+        String readString="";
+        int line =0;
+        try{
+            InputStream inputStream = openFileInput(fileName);
+            if(inputStream != null){
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while((readString = bufferedReader.readLine())!= null){
+                    stringBuilder.append(readString);
+                    line++;
+                }
+                inputStream.close();
+                readString = stringBuilder.toString();
+            }
+        }catch (FileNotFoundException e){
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e){
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+        System.out.println("Stevilo vrstic:" + line);
+
+        if (line==0||line==1)
+        {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
+

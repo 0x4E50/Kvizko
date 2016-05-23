@@ -28,6 +28,7 @@
     <string name="quiz_edit_text_answer">Type your own answer</string>
     <string name="quiz_edit_text_button">Save</string>
     <string name="button_start_quiz">Start Quiz</string>
+    <string name="quiz_menu">Reset Stats</string>
 
     <!-- StatsActivity -->
     <string name="stats_reset">Reset stats</string>
