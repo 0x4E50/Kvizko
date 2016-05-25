@@ -1,12 +1,7 @@
-# ProjektJanez
-##### Version: 0.8.0-alpha
+# Kvizko
+##### Version: 1.0.0
 
 #### Features:
-- [x] Timer (1)
-- [ ] Quiz
-- [x] Statistics (2)
-
-#### Notes:
-- (1) Could use some minor improvements
-- (2) Pretty much done, ready for expansion if needed
-
+- [x] Timer
+- [X] Quiz
+- [x] Statistics

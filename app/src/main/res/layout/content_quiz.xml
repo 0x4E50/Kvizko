@@ -76,7 +76,6 @@
         android:text="Answer"
         android:id="@+id/AnwserAndNext"
         android:visibility="gone"
-        android:layout_alignParentRight="false"
         android:layout_below="@+id/QuestionText" />
 
 </RelativeLayout>

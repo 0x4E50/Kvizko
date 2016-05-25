@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.school.denis_niko.projektjanez"
+        applicationId "com.school.denis_niko.kvizko"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1

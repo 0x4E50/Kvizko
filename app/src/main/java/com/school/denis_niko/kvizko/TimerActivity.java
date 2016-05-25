@@ -1,4 +1,4 @@
-package com.school.denis_niko.projektjanez;
+package com.school.denis_niko.kvizko;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.school.denis_niko.projektjanez.QuizActivity">
+    tools:context="com.school.denis_niko.kvizko.QuizActivity">
 
     <item
         android:id="@+id/quiz_settings"
         android:orderInCategory="100"
         android:title="@string/quiz_menu"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 
 </menu>

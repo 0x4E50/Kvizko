@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.school.denis_niko.projektjanez"
-    android:versionName="0.8.0-alpha">
+    package="com.school.denis_niko.kvizko"
+    android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -14,7 +14,7 @@
 
         <!-- MainActivity -->
         <activity
-            android:name="com.school.denis_niko.projektjanez.MainActivity"
+            android:name="com.school.denis_niko.kvizko.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,19 +25,19 @@
 
         <!-- TimerActivity -->
         <activity
-            android:name="com.school.denis_niko.projektjanez.TimerActivity"
+            android:name="com.school.denis_niko.kvizko.TimerActivity"
             android:label="Timer"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
         <!-- QuizActivity -->
-        <activity android:name="com.school.denis_niko.projektjanez.QuizActivity"
+        <activity android:name="com.school.denis_niko.kvizko.QuizActivity"
             android:label="Quiz"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- StatsActivity -->
         <activity
-            android:name="com.school.denis_niko.projektjanez.StatsActivity"
+            android:name="com.school.denis_niko.kvizko.StatsActivity"
             android:label="Statistics"
             android:theme="@style/AppTheme.NoActionBar" />
 

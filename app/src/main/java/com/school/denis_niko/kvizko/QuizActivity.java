@@ -1,12 +1,10 @@
-package com.school.denis_niko.projektjanez;
+package com.school.denis_niko.kvizko;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;

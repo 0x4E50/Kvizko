@@ -1,4 +1,4 @@
-package com.school.denis_niko.projektjanez;
+package com.school.denis_niko.kvizko;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
