@@ -16,29 +16,35 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:visibility="visible"
+        android:focusable="true"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_edit_text_answer"
-        android:imeActionLabel="Save"
         android:id="@+id/answer"
         android:layout_marginTop="75dp"
         android:layout_below="@+id/question"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:visibility="visible"
+        android:focusable="true"
+        android:imeOptions="actionGo"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/button_next_Q"
         android:id="@+id/NextQuestion"
         android:layout_marginTop="73dp"
         android:layout_below="@+id/answer"
         android:layout_centerHorizontal="true"
-        android:onClick="saveData"/>
+        android:onClick="saveData"
+        android:visibility="visible" />
 
     <Button
         android:layout_width="wrap_content"
@@ -55,27 +61,68 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/QuestionText"
-        android:layout_alignTop="@+id/question"
-        android:layout_alignLeft="@+id/StartQuiz"
-        android:layout_alignStart="@+id/StartQuiz"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/labelQuestion"
+        android:layout_toEndOf="@+id/labelQuestion" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/AnwserText"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/labelAnwser"
+        android:layout_toRightOf="@+id/labelAnwser"
+        android:layout_toEndOf="@+id/labelAnwser" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Answer"
+        android:text="@string/button_answer"
         android:id="@+id/AnwserAndNext"
         android:visibility="gone"
-        android:layout_below="@+id/QuestionText" />
+        android:layout_marginBottom="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/NextQuestionAnwser"
+        android:layout_toStartOf="@+id/NextQuestionAnwser"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next_questionAndAnswer"
+        android:id="@+id/NextQuestionAnwser"
+        android:visibility="gone"
+        android:layout_marginRight="44dp"
+        android:layout_marginEnd="44dp"
+        android:layout_alignTop="@+id/AnwserAndNext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/label_question"
+        android:id="@+id/labelQuestion"
+        android:singleLine="false"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/question"
+        android:layout_toEndOf="@+id/question"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/label_anwser"
+        android:id="@+id/labelAnwser"
+        android:visibility="gone"
+        android:layout_below="@+id/labelQuestion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="150dp" />
 
 </RelativeLayout>

@@ -18,11 +18,17 @@
     <string name="timer_end_message">Time is up!</string>
 
     <!-- QuizActivity -->
+    <string name="quiz_menu">Delete Data</string>
     <string name="quiz_edit_text_question">Type your own question</string>
     <string name="quiz_edit_text_answer">Type your own answer</string>
-    <string name="button_start_quiz">Start Quiz</string>
-    <string name="quiz_menu">Reset Data</string>
+    <string name="quiz_edit_text_button">Save</string>
+    <string name="button_next_Q">Next</string>
 
+    <string name="button_start_quiz">Start Quiz</string>
+    <string name="button_answer">Answer</string>
+    <string name="button_next_questionAndAnswer">Next Question</string>
+    <string name="label_anwser">Anwser:</string>
+    <string name="label_question">Question:</string>
     <!-- StatsActivity -->
     <string name="stats_reset">Reset stats</string>
 
